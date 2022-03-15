@@ -38,12 +38,11 @@ char* get_string(FILE * ptemp,char end)
     }
 
     // если пользователь ввел пустую строку, возвращаем NULL
-    if ((n == 0 && c == EOF) || (n == 0 && c == '\n')) 
+    if ((n == 0 && c == EOF) || (n == 0 && c == '\n'))
     {
         if(buffer) free(buffer);
         return NULL;
     }
-
     if (c == ' ')
     {
         char c;
@@ -63,6 +62,7 @@ char* get_string(FILE * ptemp,char end)
 
 
 
+
 void clean_input_product(FILE* ptemp)
 {
     char* c = (char*)malloc(2 * sizeof(char));
@@ -73,7 +73,9 @@ void clean_input_product(FILE* ptemp)
     {
         i == 1 ? i-- : i++;
         c[i] = fgetc(ptemp);
+        
     }
+    free(c);
 }
 
 bool chek_string(char* temp, bool f)
@@ -90,11 +92,11 @@ bool chek_string(char* temp, bool f)
     return flag;
 }
 
-size_t* get_data(void)
+size_t* get_data(FILE* pfile)
 {
     size_t* temp = (size_t*)malloc(size * sizeof(size_t));
 
-    char* chek = get_string(stdin,'.');
+    char* chek = get_string(pfile,'.');
     if (chek == NULL)
     {
         free(temp);
@@ -111,7 +113,7 @@ size_t* get_data(void)
 
 
 
-    chek = get_string(stdin, '.');
+    chek = get_string(pfile, '.');
     if (chek == NULL)
     {
         free(temp);
@@ -128,7 +130,7 @@ size_t* get_data(void)
 
 
 
-    chek = get_string(stdin, ' ');
+    chek = get_string(pfile, ' ');
     if (chek == NULL)
     {
         free(temp);
@@ -148,9 +150,9 @@ size_t* get_data(void)
 
 
 
-bool get_product(Product* temp)
+bool get_product(Product* temp,FILE* pfile)
 {
-    temp->name = get_string(stdin, ' ');
+    temp->name = get_string(pfile, ' ');
     if (temp->name == NULL)
     {
         return false;
@@ -159,14 +161,14 @@ bool get_product(Product* temp)
     {
         free(temp->name);
         temp->name = NULL;
-        clean_input_product(stdin);
+        clean_input_product(pfile); // позволяет игнорировать оставшиеся данные неправильной записи
         return true;
         
         //все записи обязательны, кроме даты обновления
     }
     
     //flush_input();
-    temp->product_class = get_string(stdin, ' ');
+    temp->product_class = get_string(pfile, ' ');
     if (temp->product_class == NULL)
     {
         return true;
@@ -176,11 +178,11 @@ bool get_product(Product* temp)
     {
         free(temp->product_class);
         temp->product_class = NULL;
-        clean_input_product(stdin);
+        clean_input_product(pfile); // позволяет игнорировать оставшиеся данные неправильной записи
         return true;
     }
     //flush_input();
-    temp->number = get_string(stdin, ' ');
+    temp->number = get_string(pfile, ' ');
     if (temp->number == NULL)
     {
         return true;
@@ -190,11 +192,11 @@ bool get_product(Product* temp)
     {
         free(temp->number);
         temp->number = NULL;
-        clean_input_product(stdin);
+        clean_input_product(pfile); // позволяет игнорировать оставшиеся данные неправильной записи
         return true;
     }
     //flush_input();
-    temp->install_data = get_data();
+    temp->install_data = get_data(pfile);
     if (temp->install_data == NULL)
     {
         return true;
@@ -202,7 +204,7 @@ bool get_product(Product* temp)
     }
 
     // flush_input();
-    temp->update_data = get_data();
+    temp->update_data = get_data(pfile);
     if (temp->update_data == NULL)
     {
         return true;

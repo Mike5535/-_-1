@@ -30,7 +30,7 @@ void print_product(FILE* p_out,Product* temp)
     fprintf(p_out, "\n");
 }
 
-void print_products(Product** one_class, size_t size_temp)
+void print_products(Product** one_class, size_t size_temp, FILE* pfile)
 {
     if (one_class == NULL)
         return;
@@ -46,12 +46,12 @@ void print_products(Product** one_class, size_t size_temp)
                 one_class[j + 1] = temp;
             }
         }
-    for (i = 0; i < size_temp; i ++ ) print_product(stdout, one_class[i]);
+    for (i = 0; i < size_temp; i ++ ) print_product(pfile, one_class[i]);
 }
 
 
 
-void my_out(Product** all, size_t size_all)
+void my_out(Product** all, size_t size_all,FILE* pfile)
 {
     char** unique_clas = (char**)malloc(sizeof(char*));
     size_t size_unique_clas = 1;
@@ -92,7 +92,7 @@ void my_out(Product** all, size_t size_all)
             }
       
         }
-        print_products(buff, count);
+        print_products(buff, count, pfile);
         free(buff);
     }
     free(unique_clas);

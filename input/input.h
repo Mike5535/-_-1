@@ -23,7 +23,7 @@ typedef struct
 char* get_string(FILE * ptemp,char end);
 void clean_input_product(FILE* ptemp);
 bool chek_string(char* temp, bool f ); // включение флага даёт проверку только на цифры
-size_t* get_data(void);
-bool get_product(Product* temp);
+size_t* get_data(FILE* pfile);
+bool get_product(Product* temp,FILE* pfile);
 Product* chek_null(Product* temp);
 #endif // INPUT_H

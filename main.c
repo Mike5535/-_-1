@@ -27,7 +27,7 @@ void main()
 
     size_t i = 0;
 
-    if (get_product(all[i]) == 1)
+    if (get_product(all[i],stdin) == 1)
         f1 = true; // чет
     all[i] = chek_null(all[i]);
 
@@ -61,7 +61,7 @@ void main()
             count++;
 
             all[i] = (Product*)malloc(sizeof(Product));
-            if (get_product(all[i]) == 1)
+            if (get_product(all[i],stdin) == 1)
             {
                 if (count % 2 == 0)
                     f1 = true;      // между записями одна пустая строка
@@ -73,19 +73,19 @@ void main()
 
     if (all[0] != NULL)
     {
-        my_out(all, i);
+        my_out(all, i,stdout);
     }
 
 
     for (size_t j = 0; j < i; j++)
     {
-        if(all[j]->update_data != NULL)
+        if (all[j]->update_data != NULL)
             free(all[j]->update_data);
-        free(all[j] -> install_data);
-        free(all[j] -> name);
-        free(all[j] -> number);
+        free(all[j]->install_data);
+        free(all[j]->name);
+        free(all[j]->number);
         free(all[j]->product_class);
     }
-    
     free(all);
+   
 }
