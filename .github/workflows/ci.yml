@@ -3,13 +3,13 @@ on: push
 jobs:
   check:
     runs-on: ubuntu-latest
-    container: mike5535/cmake_clang-format
+    container: mike5535/cmake_clang-format:first
     steps:
       - uses: actions/checkout@v2 
       - run: make check
   build_tests:
     runs-on: ubuntu-latest
-    container: mike5535/cmake_clang-format
+    container: mike5535/cmake_clang-format:first
     needs: [check]
     steps:
     - uses: actions/checkout@v2 
@@ -29,7 +29,7 @@ jobs:
         
   valgrind_tests:
     runs-on: ubuntu-latest
-    container: mike5535/cmake_clang-format
+    container: mike5535/cmake_clang-format:first
     needs: [check]
     steps:
     - uses: actions/checkout@v2 
