@@ -21,7 +21,7 @@ typedef struct
 #endif
 
 void print_data(FILE* p_out, size_t* data);
-void print_product(FILE* p_out,Product* temp);
+void print_product(FILE* p_out, Product* temp);
 void print_products(Product** one_class, size_t size_temp, FILE* pfile);
-void my_out(Product** all, size_t size_all,FILE* pfile);
+void my_out(Product** all, size_t size_all, FILE* pfile);
 #endif // OUTPUT_H
