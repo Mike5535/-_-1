@@ -15,11 +15,11 @@ jobs:
     - uses: actions/checkout@v2 
     - run: cd project
     - run: mkdir build
-    - run: apt install cmake
+    - run: sudo apt install cmake
     - run: cmake ..
-    - run: apt install gcc
+    - run: sudo apt install gcc
     - run: make 
-    - run: apt install valgrind
+    - run: sudo apt install valgrind
     - run: valgrind --tool=memcheck --leak-check=yes ./tests/test_product
     - name: Upload artifacts
       uses: actions/upload-artifact@v2
