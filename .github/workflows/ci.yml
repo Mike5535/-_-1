@@ -9,7 +9,7 @@ jobs:
       - run: make check
   build_tests:
     runs-on: ubuntu-latest
-    container: leshiy1295/gcc_linters
+    container: mike5535/cmake_clang-format
     needs: [check]
     steps:
     - uses: actions/checkout@v2 
