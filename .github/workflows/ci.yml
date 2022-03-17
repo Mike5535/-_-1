@@ -13,15 +13,22 @@ jobs:
     needs: [check]
     steps:
     - uses: actions/checkout@v2 
-    - run: make build
+    - run: cd project
+    - run: mkdir build
+    - run: cd build
+    - run: cmake ..
+    - run: make 
     - name: Upload artifacts
       uses: actions/upload-artifact@v2
       with:
-        path: main.out
+        path: products.out
   test:
     runs-on: ubuntu-latest
     container: leshiy1295/gcc_linters
     needs: [build]
     steps:
       - uses: actions/checkout@v2 
-      - run: make test
+      - run: cd project
+      - run: cd build
+      - run: apt install valgrind
+      - run: valgrind --tool=memcheck --leak-check=yes ./tests/test_product
