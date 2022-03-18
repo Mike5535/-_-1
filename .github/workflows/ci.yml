@@ -33,7 +33,7 @@ jobs:
     needs: [build_tests]
     steps:
     - uses: actions/checkout@v2 
-    - - run: cd project
+    - run: cd project
     - run: mkdir build
     - run: cd build
     - run: cmake ..
