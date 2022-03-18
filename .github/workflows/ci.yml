@@ -12,6 +12,7 @@ jobs:
     container: mike5535/cmake_clang-format:first
     steps:
     - uses: actions/checkout@v2 
+    - run: cd DZ1_c
     - run: cd project
     - run: mkdir build
     - run: cd build
@@ -33,6 +34,7 @@ jobs:
     needs: [build_tests]
     steps:
     - uses: actions/checkout@v2 
+    - run: cd DZ1_c
     - run: cd project
     - run: mkdir build
     - run: cd build
@@ -45,5 +47,5 @@ jobs:
       with:
         path: ./valgrindLogs.txt
         
-        on: push
+
 
