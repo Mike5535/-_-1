@@ -1,4 +1,4 @@
-on: push
+        on: push
 
 jobs:
   check:
@@ -44,3 +44,6 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         path: ./valgrindLogs.txt
+        
+        on: push
+
