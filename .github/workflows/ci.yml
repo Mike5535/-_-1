@@ -3,13 +3,13 @@ on: push
 jobs:
   check:
     runs-on: ubuntu-latest
-    container: mike5535/cmake_clang-format:second
+    container: mike5535/cmake_clang-format:third
     steps:
       - uses: actions/checkout@v2 
       - run: make check
   build_tests:
     runs-on: ubuntu-latest
-    container: mike5535/cmake_clang-format:second
+    container: mike5535/cmake_clang-format:third
     steps:
     - uses: actions/checkout@v2 
     - run: pwd
@@ -18,8 +18,7 @@ jobs:
     - run: make 
     - run: ls -l
     - run: ./tests/test_product
-    - run: lcov -t "coverageTests" -o coverage.info -c -d /input/
-    - run: lcov -t "coverageTests" -o coverage.info -c -d /output/
+    - run: lcov -t "coverageTests" -o coverage.info -c -d .
     - run: genhtml -o report coverage.info
     - name: Upload artifacts
       uses: actions/upload-artifact@v2
@@ -28,7 +27,7 @@ jobs:
         
   valgrind_tests:
     runs-on: ubuntu-latest
-    container: mike5535/cmake_clang-format:second
+    container: mike5535/cmake_clang-format:third
     steps:
     - uses: actions/checkout@v2 
     - run: pwd
