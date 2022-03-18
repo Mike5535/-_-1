@@ -36,7 +36,7 @@ jobs:
     - run: pwd
     - run: ls -l
     - run: cmake ../DZ1_c/project
-    - run: make ../DZ1_c/project
+    - run: make 
     - run: ls -l
     - run: ./tests/test_product
     - run: valgrind --track-origins=yes --leak-check=full --log-file=valgrindLogs.txt ./tests/test_product
