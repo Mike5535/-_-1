@@ -12,11 +12,8 @@ jobs:
     container: mike5535/cmake_clang-format:third
     steps:
     - uses: actions/checkout@v2 
-    - run: pwd
-    - run: ls -l
     - run: cmake ../DZ1_c/project
     - run: make 
-    - run: ls -l
     - run: ./tests/test_product
     - run: lcov -t "coverageTests" -o coverage.info -c -d .
     - run: genhtml -o report coverage.info
@@ -30,11 +27,8 @@ jobs:
     container: mike5535/cmake_clang-format:third
     steps:
     - uses: actions/checkout@v2 
-    - run: pwd
-    - run: ls -l
     - run: cmake ../DZ1_c/project
     - run: make 
-    - run: ls -l
     - run: ./tests/test_product
     - run: valgrind --track-origins=yes --leak-check=yes --log-file=valgrindLogs.txt ./tests/test_product
     - name: Upload artifacts
