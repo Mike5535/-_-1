@@ -13,15 +13,13 @@ jobs:
     steps:
     - uses: actions/checkout@v2 
     - run: pwd
-    - run: cd project
-    - run: mkdir build
-    - run: cd build
-    - run: pwd
-    - run: cmake ..
-    - run: make
+    - run: ls -l
+    - run: cmake ../DZ1_c/project
+    - run: make 
+    - run: ls -l
     - run: ./tests/test_product
-    - run: lcov -t "coverageTests" -o coverage.info -c -d ../input/
-    - run: lcov -t "coverageTests" -o coverage.info -c -d ../output/
+    - run: lcov -t "coverageTests" -o coverage.info -c -d project/input/
+    - run: lcov -t "coverageTests" -o coverage.info -c -d project/output/
     - run: genhtml -o report coverage.info
     - name: Upload artifacts
       uses: actions/upload-artifact@v2
@@ -39,7 +37,7 @@ jobs:
     - run: make 
     - run: ls -l
     - run: ./tests/test_product
-    - run: valgrind --track-origins=yes --leak-check=full --log-file=valgrindLogs.txt ./tests/test_product
+    - run: valgrind --track-origins=yes --leak-check=yes --log-file=valgrindLogs.txt ./tests/test_product
     - name: Upload artifacts
       uses: actions/upload-artifact@v2
       with:
