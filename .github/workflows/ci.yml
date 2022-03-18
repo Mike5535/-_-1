@@ -18,8 +18,8 @@ jobs:
     - run: make 
     - run: ls -l
     - run: ./tests/test_product
-    - run: lcov -t "coverageTests" -o coverage.info -c -d project/input/
-    - run: lcov -t "coverageTests" -o coverage.info -c -d project/output/
+    - run: lgcov -t "coverageTests" -o coverage.info -c -d /input/
+    - run: lgcov -t "coverageTests" -o coverage.info -c -d /output/
     - run: genhtml -o report coverage.info
     - name: Upload artifacts
       uses: actions/upload-artifact@v2
