@@ -13,7 +13,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2 
     - run: pwd
-    - run: cd DZ1_c
     - run: cd project
     - run: mkdir build
     - run: cd build
@@ -35,11 +34,15 @@ jobs:
     steps:
     - uses: actions/checkout@v2 
     - run: pwd
-    - run: cd DZ1_c
+    - run: ls -l
     - run: cd project
+    - run: ls -l
     - run: mkdir build
     - run: cd build
+    - run: pwd
+    - run: ls -l
     - run: cmake ..
+    - run: ls -l
     - run: make
     - run: ./tests/test_product
     - run: valgrind --track-origins=yes --leak-check=full --log-file=valgrindLogs.txt ./tests/test_product
