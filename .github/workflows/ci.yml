@@ -12,6 +12,7 @@ jobs:
     container: mike5535/cmake_clang-format:first
     steps:
     - uses: actions/checkout@v2 
+    - run: pwd
     - run: cd DZ1_c
     - run: cd project
     - run: mkdir build
@@ -31,9 +32,9 @@ jobs:
   valgrind_tests:
     runs-on: ubuntu-latest
     container: mike5535/cmake_clang-format:first
-    needs: [build_tests]
     steps:
     - uses: actions/checkout@v2 
+    - run: pwd
     - run: cd DZ1_c
     - run: cd project
     - run: mkdir build
