@@ -37,8 +37,8 @@ jobs:
     - run: ls -l
     - run: cmake ../DZ1_c/project
     - run: make ../DZ1_c/project
-    - run: ./DZ1_c/project/tests/test_product
-    - run: valgrind --track-origins=yes --leak-check=full --log-file=valgrindLogs.txt ./DZ1_c/project/tests/test_product
+    - run: ./project/tests/test_product
+    - run: valgrind --track-origins=yes --leak-check=full --log-file=valgrindLogs.txt ./project/tests/test_product
     - name: Upload artifacts
       uses: actions/upload-artifact@v2
       with:
