@@ -1,0 +1,40 @@
+on: push
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    container: mike5535/cmake_clang-format:third
+    steps:
+      - uses: actions/checkout@v2 
+      - run: make check
+  build_tests:
+    runs-on: ubuntu-latest
+    container: mike5535/cmake_clang-format:third
+    steps:
+    - uses: actions/checkout@v2 
+    - run: cmake ../DZ1_c/project
+    - run: make 
+    - run: ./tests/test_product
+    - run: lcov -t "coverageTests" -o coverage.info -c -d .
+    - run: genhtml -o report coverage.info
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        path: ./report/
+        
+  valgrind_tests:
+    runs-on: ubuntu-latest
+    container: mike5535/cmake_clang-format:third
+    steps:
+    - uses: actions/checkout@v2 
+    - run: cmake ../DZ1_c/project
+    - run: make 
+    - run: ./tests/test_product
+    - run: valgrind --track-origins=yes --leak-check=yes --log-file=valgrindLogs.txt ./tests/test_product
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        path: ./valgrindLogs.txt
+        
+
+
